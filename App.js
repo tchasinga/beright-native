@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     height: 200,
   },
   texting: {
-    color: '#60efff',
+    color: '#121313',
     fontSize: 20,
     fontWeight: 'bold',
     marginTop: "3%"
