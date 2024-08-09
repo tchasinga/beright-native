@@ -27,5 +27,6 @@ const styles = StyleSheet.create({
     color: '#60efff',
     fontSize: 20,
     fontWeight: 'bold',
+    marginTop: "3%"
   },
 });
