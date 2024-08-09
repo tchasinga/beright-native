@@ -1,0 +1,38 @@
+{
+  "expo": {
+    "name": "beright-native",
+    "slug": "beright-native",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/ic_launcher.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/ic_launcher.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "permissions": [
+      "INTERNET",
+      "READ_EXTERNAL_STORAGE",
+      "WRITE_EXTERNAL_STORAGE"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/ic_launcher.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.tchasinga.berightnative"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "73e91287-0e73-46c7-8e77-a48164a1e168"
+      }
+    }
+  }
+}
