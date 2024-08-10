@@ -4,7 +4,7 @@ import React from 'react'
 const Todoscreens = () => {
   return (
     <View>
-      <Text>Todoscreens</Text>
+      <Text>Todoscreens pages</Text>
     </View>
   )
 }
