@@ -28,7 +28,7 @@ const Todoscreens = () => {
       <View style={Global.AddingMargin}>
         <Text>Todo Screens !!</Text>
         <TextInput style={Global.input} placeholder="Add Todo" />
-        <TouchableOpacity style={Global.ButtonBtn}>
+        <TouchableOpacity style={Global.ButionBtn}>
           <Text>Add Todo</Text>
         </TouchableOpacity>
 
