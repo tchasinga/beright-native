@@ -1,9 +1,10 @@
-import {Text, View, Image , StyleSheet} from 'react-native';
+import {Text, View, Image , StyleSheet, SafeAreaView} from 'react-native';
+import Todoscreens from './src/screen/Todoscreens';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-        <Text>New design is added now </Text>
+    <View>
+      <Todoscreens/>
     </View>
   );
 }
