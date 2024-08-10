@@ -33,6 +33,12 @@ export default StyleSheet.create({
     paddingHorizontal: 6,
     paddingVertical: 12,
     marginBottom: 12,
+    flexDirection: "row",
+    alignItems: "center",    
+  },
+
+  Texter : {
+    flex: 1,
   },
 
   ButionBtn: {

@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, SafeAreaView, TextInput, TouchableOpacity, FlatList } from 'react-native';
 import React from 'react';
 import Global from '../Global/Global';
+import { IconButton } from 'react-native-paper';
 
 const AsiwajuData = [
   {
@@ -18,7 +19,9 @@ const Todoscreens = () => {
   const renderTodos = ({ item, index }) => {
     return (
       <View style={Global.designResult}>
-        <Text>{item.name}</Text>
+        <Text style={Global.Texter}>{item.name}</Text>
+        <IconButton icon="pencil" color="red" size={20} />
+        <IconButton icon="delete" color="red" size={20} />
       </View>
     );
   };
