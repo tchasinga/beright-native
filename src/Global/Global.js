@@ -18,13 +18,24 @@ export default StyleSheet.create({
         marginVertical: 8,
         lineHeight: 20,
     },
+    
     input: {
         borderWidth: 2,
         borderColor: "#ddd",
         paddingVertical: 6,
-        paddingHorizontal: 8,
+        paddingHorizontal: 18,
         borderRadius: 15,
     },
+
+    ButionBtn : {
+        backgroundColor: "coral",
+        padding: 9,
+        marginTop: 20,
+        flexDirection: "row",
+        justifyContent: "center",
+        borderRadius: 15,
+    },
+
     AddingMargin :{
         marginHorizontal: 10,
     },
