@@ -1,11 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image } from 'react-native';
-import ImgOne from './assets/images/pexelslisettkruusimae.jpg';
+// import ImgOne from './assets/images/pexelslisettkruusimae.jpg';
 import Todoscreens from './src/screen/Todoscreens';
 
 export default function App() {
   return (
-    <View style={styles.container}>
+    <View style={styles.container} >
       <Todoscreens/>
     </View>
   );
