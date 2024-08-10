@@ -1,13 +1,12 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image } from 'react-native';
-import ImgOne from './assets/images/pexelslisettkruusimae.jpg';
+import {Text, View, Image , StyleSheet, SafeAreaView} from 'react-native';
+import Todoscreens from './src/screen/Todoscreens';
+import DefaultUi from './src/Components/DefaultUi.js';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Image source={ImgOne} style={styles.image} />
-      <Text style={styles.texting}>This is my main App...</Text>
-      <StatusBar style="auto" />
+    <View>
+      <Todoscreens/>
+      <DefaultUi/>
     </View>
   );
 }
@@ -19,14 +18,4 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  image: {
-    width: "100%",
-    height: "100%",
-  },
-  texting: {
-    color: '#121313',
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginTop: "3%"
-  },
-});
+})
