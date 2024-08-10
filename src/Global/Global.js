@@ -1,30 +1,32 @@
 import { StyleSheet, Platform } from "react-native";
 
-export default globalStyles = StyleSheet.create({
+export default StyleSheet.create({
     container: {
         flex: 1,
         padding: 20,
         backgroundColor: "#fff",
     },
     titleText: {
-        fontSize: 18,
+        fontSize: 12,
         fontWeight: "bold",
         color: "#333",
     },
     androidSafeArea: {
-        flex: 1,
-        paddingTop: Platform.OS === "android" ? 25 : 0,
+        paddingTop: Platform.OS === "android" ? 30 : 0,
     },
     paragraph: {
         marginVertical: 8,
         lineHeight: 20,
     },
     input: {
-        borderWidth: 1,
+        borderWidth: 2,
         borderColor: "#ddd",
-        padding: 10,
-        fontSize: 18,
-        borderRadius: 6,
+        paddingVertical: 6,
+        paddingHorizontal: 8,
+        borderRadius: 15,
+    },
+    AddingMargin :{
+        marginHorizontal: 10,
     },
     errorText: {
         color: "crimson",
