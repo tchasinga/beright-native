@@ -17,7 +17,7 @@ const Todoscreens = () => {
   
   const renderTodos = ({ item, index }) => {
     return (
-      <View>
+      <View style={Global.designResult}>
         <Text>{item.name}</Text>
       </View>
     );
