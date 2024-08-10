@@ -1,11 +1,14 @@
-import {Text, View } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
+import React from 'react'
 
 const Todoscreens = () => {
   return (
     <View>
-      <Text className='text-xl text-red-600 font-bold'>Todoscreens pages</Text>
+      <Text>Todoscreens</Text>
     </View>
   )
 }
 
 export default Todoscreens
+
+const styles = StyleSheet.create({})
