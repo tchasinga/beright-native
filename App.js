@@ -6,10 +6,7 @@ import Todoscreens from './src/screen/Todoscreens';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Image source={ImgOne} style={styles.image} />
-      <Text style={styles.texting}>This is my main App...</Text>
       <Todoscreens/>
-      <StatusBar style="auto" />
     </View>
   );
 }
