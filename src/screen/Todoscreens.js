@@ -3,16 +3,6 @@ import React, {useState} from 'react';
 import Global from '../Global/Global';
 import { IconButton } from 'react-native-paper';
 
-const AsiwajuData = [
-  {
-    id: 1,
-    name: "Asiwaju learning",
-  },
-  {
-    id: 2,
-    name: "Tchasinga the person",
-  }
-];
 
 const Todoscreens = () => {
 
