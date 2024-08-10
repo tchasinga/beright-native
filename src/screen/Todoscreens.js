@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, SafeAreaView, TextInput, TouchableOpacity, FlatList } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import Global from '../Global/Global';
 import { IconButton } from 'react-native-paper';
 
@@ -15,7 +15,12 @@ const AsiwajuData = [
 ];
 
 const Todoscreens = () => {
+
+  // Initiliaze the state
+  const [todo, setTodo] = useState("");
+  const [todolist, setTodoList] = useState([])
   
+  // Render data for Todo...
   const renderTodos = ({ item, index }) => {
     return (
       <View style={Global.designResult}>
@@ -26,17 +31,22 @@ const Todoscreens = () => {
     );
   };
 
+  // Adding a todo list,
+  const handAddTodo = () => {
+    setTodoList([...todolist, {id: Date.now().toString(), name: todo}]);
+  };
+
   return (
     <SafeAreaView style={Global.androidSafeArea}>
       <View style={Global.AddingMargin}>
         <Text>Todo Screens !!</Text>
-        <TextInput style={Global.input} placeholder="Add Todo" />
-        <TouchableOpacity style={Global.ButionBtn}>
+        <TextInput style={Global.input} placeholder="Add Todo" value={todo} onChangeText={(userText) => setTodo(userText)}/>
+        <TouchableOpacity style={Global.ButionBtn} onPress={() => handAddTodo()}>
           <Text>Add Todo</Text>
         </TouchableOpacity>
 
         {/* Data viewer... */}
-        <FlatList data={AsiwajuData} renderItem={renderTodos} />
+        <FlatList data={todolist } renderItem={renderTodos}/>
       </View>
     </SafeAreaView>
   );
