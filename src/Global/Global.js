@@ -42,7 +42,7 @@ export default StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     borderRadius: 15,
-    marginBottom: 12,
+    marginBottom: 32,
   },
 
   AddingMargin: {
