@@ -5,7 +5,7 @@ import Todoscreens from './src/screen/Todoscreens';
 
 export default function App() {
   return (
-    <View style={styles.container} >
+    <View style={styles.container}>
       <Todoscreens/>
     </View>
   );
