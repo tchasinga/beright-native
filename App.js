@@ -1,12 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import ImgOne from './assets/images/pexelslisettkruusimae.jpg';
+import Todoscreens from './src/screen/Todoscreens';
 
 export default function App() {
   return (
     <View style={styles.container}>
       <Image source={ImgOne} style={styles.image} />
       <Text style={styles.texting}>This is my main App...</Text>
+      <Todoscreens/>
       <StatusBar style="auto" />
     </View>
   );
