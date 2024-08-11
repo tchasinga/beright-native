@@ -44,6 +44,12 @@ export default StyleSheet.create({
     marginVertical: 10,
   },
 
+  ImageStyle: {
+    width: 300,
+    height: 300,
+    borderRadius: 15,
+  },
+
   ButionBtn: {
     backgroundColor: "coral",
     padding: 9,

@@ -6,7 +6,7 @@ import Global from "../Global/Global";
 const DefaultUi = () => {
   return (
     <View style={Global.container}>
-      <Image source={myImg} style={{ width: 300, height: 300 }} />
+      <Image source={myImg} style={Global.ImageStyle} />
       <Text style={Global.Texter}>Please start planing your...</Text>
     </View>
   );
