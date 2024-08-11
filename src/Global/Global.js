@@ -38,11 +38,15 @@ export default StyleSheet.create({
   },
 
   Texter : {
+    flex: 1,
+  },
+
+   newText :{
     fontSize: 15,
     color: "#181024",
     fontWeight: "heavy",
     marginVertical: 10,
-  },
+   },
 
   ImageStyle: {
     width: 300,

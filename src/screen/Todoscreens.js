@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, SafeAreaView, TextInput, TouchableOpacity, Flat
 import React, {useState} from 'react';
 import Global from '../Global/Global';
 import { IconButton } from 'react-native-paper';
+import DefaultUi from '../Components/DefaultUi';
 
 
 const Todoscreens = () => {
@@ -43,6 +44,14 @@ const Todoscreens = () => {
 
         {/* Data viewer... */}
         <FlatList data={todolist } renderItem={renderTodos}/>
+
+        {/* Check if todo list is empty */}
+        {todolist.length === 0 && (
+          <View>
+             <DefaultUi/>
+          </View>
+        )
+        }
       </View>
     </SafeAreaView>
   );
