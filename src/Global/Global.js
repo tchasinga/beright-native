@@ -47,7 +47,7 @@ export default StyleSheet.create({
   ImageStyle: {
     width: 300,
     height: 300,
-    borderRadius: 15,
+    borderRadius: 25,
   },
 
   ButionBtn: {
