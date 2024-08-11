@@ -6,8 +6,9 @@ import Global from "../Global/Global";
 const DefaultUi = () => {
   return (
     <View style={Global.container}>
-      <Image source={myImg} style={{ width: 200, height: 200 }} />
-      <Text>Please start planing your todo</Text>
+      <Image source={myImg} style={Global.ImageStyle} />
+      <Text style={Global.newText}>Your todo list is empty.</Text>
+      <Text style={Global.subText}>Add some tasks to get started!</Text>
     </View>
   );
 };
