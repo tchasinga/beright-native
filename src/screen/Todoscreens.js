@@ -45,9 +45,18 @@ const Todoscreens = () => {
       <View style={Global.AddingMargin}>
         <Text>Todo Screens !!</Text>
         <TextInput style={Global.input} placeholder="Add Todo" value={todo} onChangeText={(userText) => setTodo(userText)}/>
-        <TouchableOpacity style={Global.ButionBtn} onPress={() => handAddTodo()}>
-          <Text>Add Todo</Text>
-        </TouchableOpacity>
+        
+        {
+          setEdit ? (
+            <TouchableOpacity style={Global.ButionBtn} onPress={handAddTodo}>
+              <Text>Update Todo</Text>
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity style={Global.ButionBtn} onPress={handAddTodo}>
+              <Text>Add Todo</Text>
+            </TouchableOpacity>
+          )
+        }
 
         {/* Data viewer... */}
         <FlatList data={todolist } renderItem={renderTodos}/>
