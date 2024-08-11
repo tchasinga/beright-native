@@ -13,7 +13,10 @@ const Todoscreens = () => {
   
 
   // Editing side is added now 
-  const handlerEditTodoList = () => {};
+  const handlerEditTodoList = () => {
+    console.log("Edit Todo List");
+    
+  };
 
   // Render data for Todo...
   const renderTodos = ({ item, index }) => {
