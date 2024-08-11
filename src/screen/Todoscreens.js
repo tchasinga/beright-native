@@ -10,12 +10,19 @@ const Todoscreens = () => {
   // Initiliaze the state
   const [todo, setTodo] = useState("");
   const [todolist, setTodoList] = useState([])
-  
+  const [edit, setEdit] = useState(null);
 
   // Editing side is added now 
   const handlerEditTodoList = () => {
-    console.log("Edit Todo List");
-    
+    const newTodo = todolist.map((item) => {
+      if (item.id === edit.id) {
+        item.name = todo;
+      }
+      return item;
+    });
+    setTodoList(newTodo);
+    setEdit(null);
+    setTodo("");
   };
 
   // Render data for Todo...
@@ -23,7 +30,7 @@ const Todoscreens = () => {
     return (
       <View style={Global.designResult}>
         <Text style={Global.Texter}>{item.name}</Text>
-        <IconButton icon="pencil" color="red" size={20}  onPress={() => handlerEditTodoList()}/>
+        <IconButton icon="pencil" color="red" size={20}  onPress={() => handlerEditTodoList(item.id)}/>
         <IconButton icon="delete" color="red" size={20}  onPress={() => handDeleteTodo(item.id)}/>
       </View>
     ); 
