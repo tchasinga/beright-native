@@ -2,7 +2,6 @@ import { StyleSheet, Platform } from "react-native";
 
 export default StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
@@ -39,7 +38,10 @@ export default StyleSheet.create({
   },
 
   Texter : {
-    flex: 1,
+    fontSize: 15,
+    color: "#181024",
+    fontWeight: "heavy",
+    marginVertical: 10,
   },
 
   ButionBtn: {
