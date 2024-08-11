@@ -1,9 +1,10 @@
 import { StyleSheet, Text, View, SafeAreaView, TextInput, TouchableOpacity, FlatList, Animated } from 'react-native';
 import React, { useState, useEffect, useRef } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Global from '../Global/Global';
 import { IconButton } from 'react-native-paper';
 import DefaultUi from '../Components/DefaultUi';
+import * as Notifications from 'expo-notifications';
+import Global from '../Global/Global';
 
 const Todoscreens = () => {
   const [todo, setTodo] = useState("");
@@ -57,6 +58,7 @@ const Todoscreens = () => {
       setTodoList(newTodoList);
       saveTodos(newTodoList);
       setTodo("");
+      scheduleNotification(todo);
     }
   };
 
@@ -81,6 +83,17 @@ const Todoscreens = () => {
     const newTodo = todolist.filter((item) => item.id !== id);
     setTodoList(newTodo);
     saveTodos(newTodo);
+  };
+
+  // Schedule a notification
+  const scheduleNotification = async (todo) => {
+    await Notifications.scheduleNotificationAsync({
+      content: {
+        title: "Todo Added",
+        body: `Your todo "${todo}" has been added!`,
+      },
+      trigger: { seconds: 1 }, // Adjust this as needed
+    });
   };
 
   // Load todos when component mounts
