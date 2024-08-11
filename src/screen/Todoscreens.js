@@ -1,15 +1,17 @@
-import { StyleSheet, Text, View, SafeAreaView, TextInput, TouchableOpacity, FlatList } from 'react-native';
-import React, { useState, useEffect } from 'react';
+import { StyleSheet, Text, View, SafeAreaView, TextInput, TouchableOpacity, FlatList, Animated } from 'react-native';
+import React, { useState, useEffect, useRef } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Global from '../Global/Global';
 import { IconButton } from 'react-native-paper';
 import DefaultUi from '../Components/DefaultUi';
 
 const Todoscreens = () => {
-  // Initialize the state
   const [todo, setTodo] = useState("");
   const [todolist, setTodoList] = useState([]);
   const [edit, setEdit] = useState(null);
+
+  // Animation
+  const fadeAnim = useRef(new Animated.Value(0)).current;
 
   // Load todos from AsyncStorage
   const loadTodos = async () => {
@@ -40,17 +42,18 @@ const Todoscreens = () => {
 
   // Render data for Todo...
   const renderTodos = ({ item }) => (
-    <View style={Global.designResult}>
+    <Animated.View style={[Global.designResult, { opacity: fadeAnim }]}>
       <Text style={Global.Texter}>{item.name}</Text>
+      <Text style={Global.dateText}>{new Date(item.date).toLocaleString()}</Text>
       <IconButton icon="pencil" color="red" size={20} onPress={() => handlerEditTodoList(item)} />
       <IconButton icon="delete" color="red" size={20} onPress={() => handDeleteTodo(item.id)} />
-    </View>
+    </Animated.View>
   );
 
   // Add a todo item
   const handAddTodo = () => {
     if (todo.trim()) {
-      const newTodoList = [...todolist, { id: Date.now().toString(), name: todo }];
+      const newTodoList = [...todolist, { id: Date.now().toString(), name: todo, date: new Date() }];
       setTodoList(newTodoList);
       saveTodos(newTodoList);
       setTodo("");
@@ -83,39 +86,40 @@ const Todoscreens = () => {
   // Load todos when component mounts
   useEffect(() => {
     loadTodos();
+    // Fade in animation
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 500,
+      useNativeDriver: true,
+    }).start();
   }, []);
 
   return (
     <SafeAreaView style={Global.androidSafeArea}>
+      <View style={Global.header}>
+        <Text style={Global.headerText}>Todo List</Text>
+      </View>
       <View style={Global.AddingMargin}>
-        <Text>Todo Screens !!</Text>
         <TextInput 
           style={Global.input} 
           placeholder="Add Todo" 
           value={todo} 
           onChangeText={(userText) => setTodo(userText)} 
         />
-        
         {
           edit ? (
             <TouchableOpacity style={Global.ButionBtn} onPress={handAddTodoUpdate}>
-              <Text>Update Todo</Text>
+              <Text style={Global.buttonText}>Update Todo</Text>
             </TouchableOpacity>
           ) : (
             <TouchableOpacity style={Global.ButionBtn} onPress={handAddTodo}>
-              <Text>Add Todo</Text>
+              <Text style={Global.buttonText}>Add Todo</Text>
             </TouchableOpacity>
           )
         }
-
-        {/* Data viewer... */}
         <FlatList data={todolist} renderItem={renderTodos} keyExtractor={(item) => item.id} />
-
-        {/* Check if todo list is empty */}
         {todolist.length === 0 && (
-          <View>
-            <DefaultUi />
-          </View>
+          <DefaultUi />
         )}
       </View>
     </SafeAreaView>

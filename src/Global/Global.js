@@ -6,64 +6,83 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  titleText: {
-    fontSize: 12,
+  header: {
+    backgroundColor: "#007bff",
+    padding: 20,
+    alignItems: "center",
+    justifyContent: "center",
+    borderBottomWidth: 1,
+    borderBottomColor: "#ddd",
+  },
+  headerText: {
+    color: "#fff",
+    fontSize: 20,
     fontWeight: "bold",
-    color: "#333",
   },
   androidSafeArea: {
     paddingTop: Platform.OS === "android" ? 30 : 0,
   },
-  paragraph: {
-    marginVertical: 8,
-    lineHeight: 20,
-  },
-
   input: {
-    borderWidth: 2,
+    borderWidth: 1,
     borderColor: "#ddd",
-    paddingVertical: 6,
-    paddingHorizontal: 18,
-    borderRadius: 15,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 30,
+    backgroundColor: "#f1f1f1",
+    marginBottom: 10,
   },
-
   designResult: {
-    backgroundColor: "#fff95b",
-    borderRadius: 9,
-    paddingHorizontal: 6,
-    paddingVertical: 12,
-    marginBottom: 12,
+    backgroundColor: "#f8f9fa",
+    borderRadius: 15,
+    paddingHorizontal: 12,
+    paddingVertical: 16,
+    marginBottom: 15,
     flexDirection: "row",
-    alignItems: "center",    
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 5,
+    elevation: 5, // for Android shadow
   },
-
-  Texter : {
+  Texter: {
     flex: 1,
   },
-
-   newText :{
+  dateText: {
+    fontSize: 12,
+    color: "#888",
+    marginLeft: 10,
+  },
+  newText: {
     fontSize: 15,
     color: "#181024",
-    fontWeight: "heavy",
+    fontWeight: "bold",
     marginVertical: 10,
-   },
-
+  },
+  subText: {
+    fontSize: 13,
+    color: "#666",
+    marginVertical: 5,
+  },
   ImageStyle: {
     width: 300,
     height: 300,
     borderRadius: 25,
   },
-
   ButionBtn: {
-    backgroundColor: "coral",
-    padding: 9,
+    backgroundColor: "#007bff",
+    padding: 12,
     marginTop: 20,
     flexDirection: "row",
     justifyContent: "center",
-    borderRadius: 15,
+    borderRadius: 30,
     marginBottom: 32,
+    elevation: 2,
   },
-
+  buttonText: {
+    color: "#fff",
+    fontWeight: "bold",
+  },
   AddingMargin: {
     marginHorizontal: 10,
   },
