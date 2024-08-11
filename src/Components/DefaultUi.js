@@ -7,7 +7,7 @@ const DefaultUi = () => {
   return (
     <View style={Global.container}>
       <Image source={myImg} style={{ width: 200, height: 200 }} />
-      <Text>Please start planing your todo</Text>
+      <Text>Please start planing your...</Text>
     </View>
   );
 };
