@@ -30,6 +30,7 @@ export default StyleSheet.create({
     borderRadius: 30,
     backgroundColor: "#f1f1f1",
     marginBottom: 10,
+    marginTop: 10
   },
   designResult: {
     backgroundColor: "#f8f9fa",
