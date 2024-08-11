@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View, SafeAreaView, TextInput, TouchableOpacity, FlatList } from 'react-native';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Global from '../Global/Global';
 import { IconButton } from 'react-native-paper';
 import DefaultUi from '../Components/DefaultUi';
@@ -10,6 +11,27 @@ const Todoscreens = () => {
   const [todolist, setTodoList] = useState([]);
   const [edit, setEdit] = useState(null);
 
+  // Load todos from AsyncStorage
+  const loadTodos = async () => {
+    try {
+      const storedTodos = await AsyncStorage.getItem('todos');
+      if (storedTodos) {
+        setTodoList(JSON.parse(storedTodos));
+      }
+    } catch (error) {
+      console.error('Failed to load todos from storage:', error);
+    }
+  };
+
+  // Save todos to AsyncStorage
+  const saveTodos = async (todos) => {
+    try {
+      await AsyncStorage.setItem('todos', JSON.stringify(todos));
+    } catch (error) {
+      console.error('Failed to save todos to storage:', error);
+    }
+  };
+
   // Handle editing a todo item
   const handlerEditTodoList = (todo) => {
     setEdit(todo);
@@ -17,20 +39,20 @@ const Todoscreens = () => {
   };
 
   // Render data for Todo...
-  const renderTodos = ({ item, index }) => {
-    return (
-      <View style={Global.designResult}>
-        <Text style={Global.Texter}>{item.name}</Text>
-        <IconButton icon="pencil" color="red" size={20} onPress={() => handlerEditTodoList(item)} />
-        <IconButton icon="delete" color="red" size={20} onPress={() => handDeleteTodo(item.id)} />
-      </View>
-    ); 
-  };
+  const renderTodos = ({ item }) => (
+    <View style={Global.designResult}>
+      <Text style={Global.Texter}>{item.name}</Text>
+      <IconButton icon="pencil" color="red" size={20} onPress={() => handlerEditTodoList(item)} />
+      <IconButton icon="delete" color="red" size={20} onPress={() => handDeleteTodo(item.id)} />
+    </View>
+  );
 
   // Add a todo item
   const handAddTodo = () => {
     if (todo.trim()) {
-      setTodoList([...todolist, { id: Date.now().toString(), name: todo }]);
+      const newTodoList = [...todolist, { id: Date.now().toString(), name: todo }];
+      setTodoList(newTodoList);
+      saveTodos(newTodoList);
       setTodo("");
     }
   };
@@ -45,6 +67,7 @@ const Todoscreens = () => {
         return item;
       });
       setTodoList(updatedTodo);
+      saveTodos(updatedTodo);
       setEdit(null);
       setTodo("");
     }
@@ -54,7 +77,13 @@ const Todoscreens = () => {
   const handDeleteTodo = (id) => {
     const newTodo = todolist.filter((item) => item.id !== id);
     setTodoList(newTodo);
+    saveTodos(newTodo);
   };
+
+  // Load todos when component mounts
+  useEffect(() => {
+    loadTodos();
+  }, []);
 
   return (
     <SafeAreaView style={Global.androidSafeArea}>
