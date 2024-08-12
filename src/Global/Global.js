@@ -20,7 +20,7 @@ export default StyleSheet.create({
     fontWeight: "bold",
   },
   androidSafeArea: {
-    paddingTop: Platform.OS === "android" ? 30 : 0,
+    paddingTop: Platform.OS === "android" ? 25 : 0,
   },
   input: {
     borderWidth: 1,
