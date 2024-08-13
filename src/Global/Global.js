@@ -58,12 +58,12 @@ export default StyleSheet.create({
     fontSize: 15,
     color: "#181024",
     fontWeight: "bold",
-    marginVertical: 10,
+    marginVertical: 3,
   },
   subText: {
     fontSize: 13,
     color: "#666",
-    marginVertical: 5,
+    marginVertical: 2,
   },
   ImageStyle: {
     width: 300,
