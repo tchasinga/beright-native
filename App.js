@@ -1,11 +1,14 @@
 import {Text, View, Image , StyleSheet, SafeAreaView} from 'react-native';
 import Todoscreens from './src/screen/Todoscreens';
-
+import { StatusBar } from 'expo-status-bar';
 export default function App() {
   return (
-    <View>
+    <>
+    <StatusBar style='auto'/>
+     <View>
       <Todoscreens/>
     </View>
+    </>
   );
 }
 
