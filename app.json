@@ -23,10 +23,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/ic_launcher.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.tchasinga.manager"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "45092a11-a6b6-4e1c-af0c-7bcfa091f963"
+      }
     }
   }
 }
