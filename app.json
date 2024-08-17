@@ -16,17 +16,23 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/aplay_store_512.png",
+        "foregroundImage": "./assets/play_store_512.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.tchasinga.berightnative"
     },
     "permissions": [
-        "INTERNET",
-        "READ_EXTERNAL_STORAGE",
-        "WRITE_EXTERNAL_STORAGE"
-      ],
+      "INTERNET",
+      "READ_EXTERNAL_STORAGE",
+      "WRITE_EXTERNAL_STORAGE"
+    ],
     "web": {
       "favicon": "./assets/play_store_512.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "d9f1154f-0126-44ea-ac4f-9c66502631d7"
+      }
     }
   }
 }
