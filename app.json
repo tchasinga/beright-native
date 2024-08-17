@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/play_store_512.png",
-    "userInterfaceStyle": "auto",
+    "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/play_store_512.png",
       "resizeMode": "contain",
@@ -19,13 +19,13 @@
         "foregroundImage": "./assets/play_store_512.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.tchasinga.berightnative"
+      "package": "com.tchasinga.berightnative",
+      "permissions": [
+        "INTERNET",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE"
+      ]
     },
-    "permissions": [
-      "INTERNET",
-      "READ_EXTERNAL_STORAGE",
-      "WRITE_EXTERNAL_STORAGE"
-    ],
     "web": {
       "favicon": "./assets/play_store_512.png"
     },
