@@ -20,7 +20,7 @@ export default StyleSheet.create({
     fontWeight: "bold",
   },
   androidSafeArea: {
-    paddingTop: Platform.OS === "android" ? 30 : 0,
+    paddingTop: Platform.OS === "android" ? 25 : 0,
   },
   input: {
     borderWidth: 1,
@@ -58,12 +58,11 @@ export default StyleSheet.create({
     fontSize: 15,
     color: "#181024",
     fontWeight: "bold",
-    marginVertical: 10,
+    marginTop: 5,
   },
   subText: {
     fontSize: 13,
     color: "#666",
-    marginVertical: 5,
   },
   ImageStyle: {
     width: 300,
