@@ -13,7 +13,7 @@
     },
     "ios": {
       "supportsTablet": true
-    },
+    }, 
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/play_store_512.png",
@@ -23,10 +23,16 @@
         "INTERNET",
         "READ_EXTERNAL_STORAGE",
         "WRITE_EXTERNAL_STORAGE"
-      ]
+      ],
+      "package": "com.tchasinga.berightnative"
     },
     "web": {
       "favicon": "./assets/play_store_512.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "ccc8ab40-1feb-45de-8756-cfe8d85cf061"
+      }
     }
   }
 }
