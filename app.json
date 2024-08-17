@@ -4,10 +4,10 @@
     "slug": "beright-native",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "icon": "./assets/play_store_512.png",
+    "userInterfaceStyle": "auto",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/play_store_512.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -16,12 +16,17 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/aplay_store_512.png",
         "backgroundColor": "#ffffff"
       }
     },
+    "permissions": [
+        "INTERNET",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE"
+      ],
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/play_store_512.png"
     }
   }
 }
