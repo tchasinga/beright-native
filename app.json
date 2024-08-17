@@ -11,15 +11,15 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "permissions": [
-      "INTERNET",
-      "READ_EXTERNAL_STORAGE",
-      "WRITE_EXTERNAL_STORAGE"
-    ],
     "ios": {
       "supportsTablet": true
     },
     "android": {
+      "permissions": [
+        "INTERNET",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE"
+      ],
       "adaptiveIcon": {
         "foregroundImage": "./assets/ic_launcher.png",
         "backgroundColor": "#ffffff"
