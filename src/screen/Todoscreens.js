@@ -96,7 +96,7 @@ const Todoscreens = () => {
     });
   };
 
-  // Load todos when component mounts
+
   useEffect(() => {
     loadTodos();
     // Fade in animation
