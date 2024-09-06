@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "beright-native",
-    "slug": "beright-native",
+    "name": "beright",
+    "slug": "beright",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/play_store_512.png",
@@ -33,6 +33,11 @@
       "eas": {
         "projectId": "ccc8ab40-1feb-45de-8756-cfe8d85cf061"
       }
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0,
+      "enabled": true,
+      "checkAutomatically": "ON_LOAD"
     }
   }
 }
