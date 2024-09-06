@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "beright",
-    "slug": "beright",
+    "slug": "beright-native",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/play_store_512.png",
@@ -13,7 +13,7 @@
     },
     "ios": {
       "supportsTablet": true
-    }, 
+    },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/play_store_512.png",
@@ -37,7 +37,11 @@
     "updates": {
       "fallbackToCacheTimeout": 0,
       "enabled": true,
-      "checkAutomatically": "ON_LOAD"
+      "checkAutomatically": "ON_LOAD",
+      "url": "https://u.expo.dev/ccc8ab40-1feb-45de-8756-cfe8d85cf061"
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
     }
   }
 }
