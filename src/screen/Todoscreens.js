@@ -110,7 +110,7 @@ const Todoscreens = () => {
   return (
     <SafeAreaView style={Global.androidSafeArea}>
       <View style={Global.header}>
-        <Text style={Global.headerText}>Manager</Text>
+        <Text style={Global.headerText}>Manager Todos</Text>
       </View>
       <View style={Global.AddingMargin}>
         <TextInput 
