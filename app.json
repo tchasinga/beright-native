@@ -23,25 +23,10 @@
         "INTERNET",
         "READ_EXTERNAL_STORAGE",
         "WRITE_EXTERNAL_STORAGE"
-      ],
-      "package": "com.tchasinga.berightnative"
+      ]
     },
     "web": {
       "favicon": "./assets/play_store_512.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "ccc8ab40-1feb-45de-8756-cfe8d85cf061"
-      }
-    },
-    "updates": {
-      "fallbackToCacheTimeout": 0,
-      "enabled": true,
-      "checkAutomatically": "ON_LOAD",
-      "url": "https://u.expo.dev/ccc8ab40-1feb-45de-8756-cfe8d85cf061"
-    },
-    "runtimeVersion": {
-      "policy": "appVersion"
     }
   }
 }
