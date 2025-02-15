@@ -19,15 +19,23 @@
         "foregroundImage": "./assets/play_store_512.png",
         "backgroundColor": "#ffffff"
       },
-      "permissions": ["INTERNET"],
+      "permissions": [
+        "INTERNET"
+      ],
       "jsEngine": "hermes",
-      "newArchEnabled": true
+      "newArchEnabled": true,
+      "package": "com.tchasinga.beright"
     },
     "web": {
       "favicon": "./assets/play_store_512.png"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
+    },
+    "extra": {
+      "eas": {
+        "projectId": "f6b1fcd1-4274-40f4-8b1e-d0949ff2e2dd"
+      }
     }
   }
 }
