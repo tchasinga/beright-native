@@ -13,16 +13,13 @@ export default StyleSheet.create({
     justifyContent: "center",
     borderBottomWidth: 1,
     borderBottomColor: "#ddd",
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   headerText: {
     color: "#fff",
     fontSize: 20,
     fontWeight: "bold",
-  },
-  counterText: {
-    color: "#fff",
-    fontSize: 16,
-    marginTop: 10,
   },
   androidSafeArea: {
     paddingTop: Platform.OS === "android" ? 25 : 0,
@@ -35,7 +32,7 @@ export default StyleSheet.create({
     borderRadius: 30,
     backgroundColor: "#f1f1f1",
     marginBottom: 10,
-    marginTop: 10
+    marginTop: 10,
   },
   designResult: {
     backgroundColor: "#f8f9fa",
@@ -43,16 +40,15 @@ export default StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 16,
     marginBottom: 15,
-    flexDirection: "row",
-    alignItems: "center",
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 5,
-    elevation: 5, // for Android shadow
+    elevation: 5,
   },
   Texter: {
     flex: 1,
+    color: "#000", // Set text color to black
   },
   dateText: {
     fontSize: 12,
@@ -61,7 +57,12 @@ export default StyleSheet.create({
   },
   priorityText: {
     fontSize: 12,
-    color: "#f39c12",
+    color: "#ff0000",
+    marginLeft: 10,
+  },
+  labelText: {
+    fontSize: 14,
+    color: "#007bff",
     marginLeft: 10,
   },
   newText: {
@@ -103,29 +104,68 @@ export default StyleSheet.create({
     marginTop: 6,
     textAlign: "center",
   },
-  picker: {
-    height: 50,
-    width: '100%',
-    marginBottom: 10,
-  },
-  datePickerButton: {
-    backgroundColor: "#f1f1f1",
-    padding: 10,
-    borderRadius: 30,
-    marginBottom: 10,
-    alignItems: 'center',
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
   },
   datePickerText: {
-    color: "#333",
+    fontSize: 16,
+    marginVertical: 10,
   },
-  searchInput: {
-    borderWidth: 1,
-    borderColor: "#ddd",
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 30,
-    backgroundColor: "#f1f1f1",
-    marginBottom: 10,
-    marginTop: 10
+  priorityContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginVertical: 10,
+  },
+  priorityLabel: {
+    fontSize: 16,
+    marginRight: 10,
+  },
+  priorityButton: {
+    marginHorizontal: 5,
+    padding: 5,
+    borderRadius: 5,
+  },
+  selectedPriority: {
+    fontWeight: "bold",
+    textDecorationLine: "underline",
+  },
+  subtasksContainer: {
+    marginTop: 10,
+  },
+  subtaskText: {
+    fontSize: 14,
+    color: "#555",
+    marginLeft: 20,
+  },
+  todoItem: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  todoHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingBottom: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: "#ddd",
+  },
+  todoBody: {
+    marginTop: 10,
+  },
+  todoActions: {
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    marginTop: 10,
   },
 });

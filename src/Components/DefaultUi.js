@@ -1,7 +1,9 @@
 import { StyleSheet, Text, View, Image } from "react-native";
 import React from "react";
-import myImg from "../Images/pexelspolinakovaleva.jpg";
 import Global from "../Global/Global";
+
+// Importing local image
+const myImg = require("../Images/pexelspolinakovaleva.jpg");
 
 const DefaultUi = () => {
   return (

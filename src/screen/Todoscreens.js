@@ -1,21 +1,22 @@
-import { StyleSheet, Text, View, SafeAreaView, TextInput, TouchableOpacity, FlatList, Animated } from 'react-native';
 import React, { useState, useEffect, useRef } from 'react';
+import { StyleSheet, Text, View, SafeAreaView, TextInput, TouchableOpacity, FlatList, Animated, Modal, Button, ScrollView } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { IconButton, Checkbox, Button } from 'react-native-paper';
+import { IconButton } from 'react-native-paper';
 import * as Notifications from 'expo-notifications';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Global from '../Global/Global';
-import { Picker } from '@react-native-picker/picker';
-import DefaultUi from '../Components/DefaultUi';
 
 const Todoscreens = () => {
   const [todo, setTodo] = useState("");
   const [todolist, setTodoList] = useState([]);
   const [edit, setEdit] = useState(null);
-  const [priority, setPriority] = useState("low");
   const [dueDate, setDueDate] = useState(new Date());
   const [showDatePicker, setShowDatePicker] = useState(false);
-  const [filteredTodoList, setFilteredTodoList] = useState([]);
+  const [priority, setPriority] = useState("Low");
+  const [modalVisible, setModalVisible] = useState(false);
+  const [label, setLabel] = useState("");
+  const [subtasks, setSubtasks] = useState([]);
+  const [subtask, setSubtask] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
 
   // Animation
@@ -27,7 +28,6 @@ const Todoscreens = () => {
       const storedTodos = await AsyncStorage.getItem('todos');
       if (storedTodos) {
         setTodoList(JSON.parse(storedTodos));
-        setFilteredTodoList(JSON.parse(storedTodos));
       }
     } catch (error) {
       console.error('Failed to load todos from storage:', error);
@@ -47,33 +47,48 @@ const Todoscreens = () => {
   const handlerEditTodoList = (todo) => {
     setEdit(todo);
     setTodo(todo.name);
+    setDueDate(new Date(todo.date));
     setPriority(todo.priority);
-    setDueDate(new Date(todo.dueDate));
+    setLabel(todo.label || "");
+    setSubtasks(todo.subtasks || []);
+    setModalVisible(true);
   };
 
   // Render data for Todo...
   const renderTodos = ({ item }) => (
     <Animated.View style={[Global.designResult, { opacity: fadeAnim }]}>
-      <View style={{flex: 1}}>
-        <Text style={Global.Texter}>{item.name}</Text>
-        <Text style={Global.dateText}>Due: {new Date(item.dueDate).toLocaleString()}</Text>
-        <Text style={Global.priorityText}>Priority: {item.priority}</Text>
+      <View style={Global.todoHeader}>
+        <Text style={Global.dateText}>{new Date(item.date).toLocaleString()}</Text>
+        <Text style={Global.priorityText}>{item.priority}</Text>
+        <Text style={Global.labelText}>{item.label}</Text>
       </View>
-      <IconButton icon="pencil" color="blue" size={20} onPress={() => handlerEditTodoList(item)} />
-      <IconButton icon="delete" color="red" size={20} onPress={() => handDeleteTodo(item.id)} />
+      <View style={Global.todoBody}>
+        <Text style={Global.Texter}>{item.name}</Text>
+        <View style={Global.subtasksContainer}>
+          {item.subtasks && item.subtasks.map(sub => (
+            <Text key={sub.id} style={Global.subtaskText}>- {sub.name}</Text>
+          ))}
+        </View>
+        <View style={Global.todoActions}>
+          <IconButton icon="pencil" color="blue" size={20} onPress={() => handlerEditTodoList(item)} />
+          <IconButton icon="delete" color="red" size={20} onPress={() => handDeleteTodo(item.id)} />
+        </View>
+      </View>
     </Animated.View>
   );
 
   // Add a todo item
   const handAddTodo = () => {
     if (todo.trim()) {
-      const newTodoList = [...todolist, { id: Date.now().toString(), name: todo, priority, dueDate, date: new Date() }];
+      const newTodoList = [...todolist, { id: Date.now().toString(), name: todo, date: dueDate, priority, label, subtasks }];
       setTodoList(newTodoList);
-      setFilteredTodoList(newTodoList);
       saveTodos(newTodoList);
       setTodo("");
-      setPriority("low");
       setDueDate(new Date());
+      setPriority("Low");
+      setLabel("");
+      setSubtasks([]);
+      setModalVisible(false);
       scheduleNotification(todo, dueDate);
     }
   };
@@ -83,17 +98,19 @@ const Todoscreens = () => {
     if (todo.trim()) {
       const updatedTodo = todolist.map((item) => {
         if (item.id === edit.id) {
-          return { ...item, name: todo, priority, dueDate };
+          return { ...item, name: todo, date: dueDate, priority, label, subtasks };
         }
         return item;
       });
       setTodoList(updatedTodo);
-      setFilteredTodoList(updatedTodo);
       saveTodos(updatedTodo);
       setEdit(null);
       setTodo("");
-      setPriority("low");
       setDueDate(new Date());
+      setPriority("Low");
+      setLabel("");
+      setSubtasks([]);
+      setModalVisible(false);
     }
   };
 
@@ -101,38 +118,34 @@ const Todoscreens = () => {
   const handDeleteTodo = (id) => {
     const newTodo = todolist.filter((item) => item.id !== id);
     setTodoList(newTodo);
-    setFilteredTodoList(newTodo);
     saveTodos(newTodo);
   };
 
+  // Add a subtask
+  const handAddSubtask = () => {
+    if (subtask.trim()) {
+      const newSubtasks = [...subtasks, { id: Date.now().toString(), name: subtask }];
+      setSubtasks(newSubtasks);
+      setSubtask("");
+    }
+  };
+
   // Schedule a notification
-  const scheduleNotification = async (todo, dueDate) => {
+  const scheduleNotification = async (todo, date) => {
     await Notifications.scheduleNotificationAsync({
       content: {
         title: "Todo Reminder",
-        body: `Your todo "${todo}" is due soon!`,
+        body: `Your todo "${todo}" is due!`,
       },
-      trigger: dueDate,
+      trigger: { date },
     });
   };
 
-  // Handle date change
-  const onDateChange = (event, selectedDate) => {
-    const currentDate = selectedDate || dueDate;
-    setShowDatePicker(false);
-    setDueDate(currentDate);
-  };
-
-  // Handle search query change
-  const onSearchChange = (query) => {
-    setSearchQuery(query);
-    if (query.trim()) {
-      const filteredList = todolist.filter((item) => item.name.toLowerCase().includes(query.toLowerCase()));
-      setFilteredTodoList(filteredList);
-    } else {
-      setFilteredTodoList(todolist);
-    }
-  };
+  // Filter todos based on search query
+  const filteredTodos = todolist.filter(todo =>
+    todo.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    todo.label.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   useEffect(() => {
     loadTodos();
@@ -147,58 +160,89 @@ const Todoscreens = () => {
   return (
     <SafeAreaView style={Global.androidSafeArea}>
       <View style={Global.header}>
-        <Text style={Global.headerText}>Manager Todos</Text>
-        <Text style={Global.counterText}>Total Todos: {todolist.length}</Text>
+        <Text style={Global.headerText}>Manage Todos</Text>
+        <Text style={Global.headerText}>Total Todos: {todolist.length}</Text>
       </View>
       <View style={Global.AddingMargin}>
         <TextInput 
           style={Global.input} 
-          placeholder="Add Todo" 
-          value={todo} 
-          onChangeText={(userText) => setTodo(userText)} 
+          placeholder="Search Todos" 
+          value={searchQuery} 
+          onChangeText={(text) => setSearchQuery(text)} 
         />
-        <Picker
-          selectedValue={priority}
-          onValueChange={(itemValue) => setPriority(itemValue)}
-          style={Global.picker}
-        >
-          <Picker.Item label="Low Priority" value="low" />
-          <Picker.Item label="Medium Priority" value="medium" />
-          <Picker.Item label="High Priority" value="high" />
-        </Picker>
-        <TouchableOpacity onPress={() => setShowDatePicker(true)} style={Global.datePickerButton}>
-          <Text style={Global.datePickerText}>{dueDate.toLocaleString()}</Text>
+        <TouchableOpacity style={Global.ButionBtn} onPress={() => setModalVisible(true)}>
+          <Text style={Global.buttonText}>Add Todo</Text>
         </TouchableOpacity>
-        {showDatePicker && (
-          <DateTimePicker
-            value={dueDate}
-            mode="datetime"
-            display="default"
-            onChange={onDateChange}
-          />
-        )}
-        {
-          edit ? (
-            <TouchableOpacity style={Global.ButionBtn} onPress={handAddTodoUpdate}>
-              <Text style={Global.buttonText}>Update Todo</Text>
-            </TouchableOpacity>
-          ) : (
-            <TouchableOpacity style={Global.ButionBtn} onPress={handAddTodo}>
-              <Text style={Global.buttonText}>Add Todo</Text>
-            </TouchableOpacity>
-          )
-        }
-        <TextInput
-          style={Global.searchInput}
-          placeholder="Search Todos"
-          value={searchQuery}
-          onChangeText={onSearchChange}
-        />
-        <FlatList data={filteredTodoList} renderItem={renderTodos} keyExtractor={(item) => item.id} />
-        {filteredTodoList.length === 0 && (
-          <DefaultUi />
-        )}
+        <FlatList data={filteredTodos} renderItem={renderTodos} keyExtractor={(item) => item.id} />
       </View>
+      <Modal animationType="slide" transparent={true} visible={modalVisible}>
+        <ScrollView contentContainerStyle={Global.modalView}>
+          <TextInput 
+            style={Global.input} 
+            placeholder="Add Todo" 
+            value={todo} 
+            onChangeText={(userText) => setTodo(userText)} 
+          />
+          <TextInput 
+            style={Global.input} 
+            placeholder="Label" 
+            value={label} 
+            onChangeText={(text) => setLabel(text)} 
+          />
+          <TouchableOpacity onPress={() => setShowDatePicker(true)}>
+            <Text style={Global.datePickerText}>Due Date: {dueDate.toLocaleString()}</Text>
+          </TouchableOpacity>
+          {showDatePicker && (
+            <DateTimePicker
+              value={dueDate}
+              mode="date"
+              display="default"
+              onChange={(event, selectedDate) => {
+                setShowDatePicker(false);
+                if (selectedDate) {
+                  setDueDate(selectedDate);
+                }
+              }}
+            />
+          )}
+          <View style={Global.priorityContainer}>
+            <Text style={Global.priorityLabel}>Priority:</Text>
+            <TouchableOpacity style={Global.priorityButton} onPress={() => setPriority("Low")}>
+              <Text style={[Global.priorityText, priority === "Low" && Global.selectedPriority]}>Low</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={Global.priorityButton} onPress={() => setPriority("Medium")}>
+              <Text style={[Global.priorityText, priority === "Medium" && Global.selectedPriority]}>Medium</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={Global.priorityButton} onPress={() => setPriority("High")}>
+              <Text style={[Global.priorityText, priority === "High" && Global.selectedPriority]}>High</Text>
+            </TouchableOpacity>
+          </View>
+          <TextInput 
+            style={Global.input} 
+            placeholder="Add Subtask" 
+            value={subtask} 
+            onChangeText={(text) => setSubtask(text)} 
+            onSubmitEditing={handAddSubtask}
+          />
+          <View style={Global.subtasksContainer}>
+            {subtasks.map(sub => (
+              <Text key={sub.id} style={Global.subtaskText}>- {sub.name}</Text>
+            ))}
+          </View>
+          {
+            edit ? (
+              <TouchableOpacity style={Global.ButionBtn} onPress={handAddTodoUpdate}>
+                <Text style={Global.buttonText}>Update Todo</Text>
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity style={Global.ButionBtn} onPress={handAddTodo}>
+                <Text style={Global.buttonText}>Add Todo</Text>
+              </TouchableOpacity>
+            )
+          }
+          <Button title="Close" onPress={() => setModalVisible(false)} />
+        </ScrollView>
+      </Modal>
     </SafeAreaView>
   );
 };

@@ -1,18 +1,18 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import Todoscreens from './src/screen/Todoscreens';
-import * as Updates from 'expo-updates';
-import { useEffect } from 'react';
-import { Alert } from 'react-native';
 
-export default function App() {
- 
+const Stack = createStackNavigator();
+
+const App = () => {
   return (
-    <View>
-     <Todoscreens />
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Todos">
+        <Stack.Screen name="Todos" component={Todoscreens} options={{ headerShown: false }} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
 
-
+export default App;
