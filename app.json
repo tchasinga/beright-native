@@ -19,7 +19,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/meditation-destress.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.tchasinga.berightnative"
     },
     "web": {
       "favicon": "./assets/play_store_512.png"
