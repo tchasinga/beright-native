@@ -8,7 +8,7 @@
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/play_store_512.png",
+      "image": "./assets/meditation-destress.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -17,18 +17,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/meditation-destress.png",
+        "foregroundImage": "./assets/play_store_512.png",
         "backgroundColor": "#ffffff"
-      },
-      "package": "com.tchasinga.berightnative"
+      }
     },
     "web": {
       "favicon": "./assets/play_store_512.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "ba1750e0-bef0-4323-91dd-ef4d4d569510"
-      }
     }
   }
 }
