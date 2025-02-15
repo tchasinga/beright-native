@@ -19,10 +19,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/play_store_512.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.tchasinga.Bright"
     },
     "web": {
       "favicon": "./assets/play_store_512.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "5b0cbaa3-c8e9-43b4-8d8d-a41f81be5624"
+      }
     }
   }
 }
