@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "beright-native",
-    "slug": "beright-native",
+    "name": "B-right",
+    "slug": "B-right",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/play_store_512.png",
