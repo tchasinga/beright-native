@@ -19,6 +19,11 @@ export default StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
   },
+  counterText: {
+    color: "#fff",
+    fontSize: 16,
+    marginTop: 10,
+  },
   androidSafeArea: {
     paddingTop: Platform.OS === "android" ? 25 : 0,
   },
@@ -52,6 +57,11 @@ export default StyleSheet.create({
   dateText: {
     fontSize: 12,
     color: "#888",
+    marginLeft: 10,
+  },
+  priorityText: {
+    fontSize: 12,
+    color: "#f39c12",
     marginLeft: 10,
   },
   newText: {
@@ -92,5 +102,30 @@ export default StyleSheet.create({
     marginBottom: 10,
     marginTop: 6,
     textAlign: "center",
+  },
+  picker: {
+    height: 50,
+    width: '100%',
+    marginBottom: 10,
+  },
+  datePickerButton: {
+    backgroundColor: "#f1f1f1",
+    padding: 10,
+    borderRadius: 30,
+    marginBottom: 10,
+    alignItems: 'center',
+  },
+  datePickerText: {
+    color: "#333",
+  },
+  searchInput: {
+    borderWidth: 1,
+    borderColor: "#ddd",
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 30,
+    backgroundColor: "#f1f1f1",
+    marginBottom: 10,
+    marginTop: 10
   },
 });

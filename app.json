@@ -19,14 +19,15 @@
         "foregroundImage": "./assets/play_store_512.png",
         "backgroundColor": "#ffffff"
       },
-      "permissions": [
-        "INTERNET",
-        "READ_EXTERNAL_STORAGE",
-        "WRITE_EXTERNAL_STORAGE"
-      ]
+      "permissions": ["INTERNET"],
+      "jsEngine": "hermes",
+      "newArchEnabled": true
     },
     "web": {
       "favicon": "./assets/play_store_512.png"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
     }
   }
 }
